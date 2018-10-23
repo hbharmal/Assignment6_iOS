@@ -3,27 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		82AAF2482179381800DFAB5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AAF2472179381800DFAB5C /* AppDelegate.swift */; };
-		82AAF24A2179381800DFAB5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AAF2492179381800DFAB5C /* ViewController.swift */; };
 		82AAF24D2179381800DFAB5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AAF24B2179381800DFAB5C /* Main.storyboard */; };
 		82AAF2502179381800DFAB5C /* group18.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82AAF24E2179381800DFAB5C /* group18.xcdatamodeld */; };
 		82AAF2522179381900DFAB5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82AAF2512179381900DFAB5C /* Assets.xcassets */; };
 		82AAF2552179381900DFAB5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AAF2532179381900DFAB5C /* LaunchScreen.storyboard */; };
+		82ACC7D62179411D0050C1FE /* AdventurerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ACC7D52179411D0050C1FE /* AdventurerTableViewController.swift */; };
+		82ACC7D82179414E0050C1FE /* Adventurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ACC7D72179414E0050C1FE /* Adventurer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		82AAF2442179381800DFAB5C /* group18.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = group18.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		82AAF2442179381800DFAB5C /* group18_assignment6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = group18_assignment6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82AAF2472179381800DFAB5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		82AAF2492179381800DFAB5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		82AAF24C2179381800DFAB5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		82AAF24F2179381800DFAB5C /* group18.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = group18.xcdatamodel; sourceTree = "<group>"; };
 		82AAF2512179381900DFAB5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82AAF2542179381900DFAB5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82AAF2562179381900DFAB5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82ACC7D52179411D0050C1FE /* AdventurerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventurerTableViewController.swift; sourceTree = "<group>"; };
+		82ACC7D72179414E0050C1FE /* Adventurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adventurer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +42,7 @@
 		82AAF23B2179381800DFAB5C = {
 			isa = PBXGroup;
 			children = (
-				82AAF2462179381800DFAB5C /* group18 */,
+				82AAF2462179381800DFAB5C /* group18_assignment6 */,
 				82AAF2452179381800DFAB5C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,31 +50,32 @@
 		82AAF2452179381800DFAB5C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				82AAF2442179381800DFAB5C /* group18.app */,
+				82AAF2442179381800DFAB5C /* group18_assignment6.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		82AAF2462179381800DFAB5C /* group18 */ = {
+		82AAF2462179381800DFAB5C /* group18_assignment6 */ = {
 			isa = PBXGroup;
 			children = (
 				82AAF2472179381800DFAB5C /* AppDelegate.swift */,
-				82AAF2492179381800DFAB5C /* ViewController.swift */,
 				82AAF24B2179381800DFAB5C /* Main.storyboard */,
 				82AAF2512179381900DFAB5C /* Assets.xcassets */,
 				82AAF2532179381900DFAB5C /* LaunchScreen.storyboard */,
 				82AAF2562179381900DFAB5C /* Info.plist */,
 				82AAF24E2179381800DFAB5C /* group18.xcdatamodeld */,
+				82ACC7D52179411D0050C1FE /* AdventurerTableViewController.swift */,
+				82ACC7D72179414E0050C1FE /* Adventurer.swift */,
 			);
-			path = group18;
+			path = group18_assignment6;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		82AAF2432179381800DFAB5C /* group18 */ = {
+		82AAF2432179381800DFAB5C /* group18_assignment6 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 82AAF2592179381900DFAB5C /* Build configuration list for PBXNativeTarget "group18" */;
+			buildConfigurationList = 82AAF2592179381900DFAB5C /* Build configuration list for PBXNativeTarget "group18_assignment6" */;
 			buildPhases = (
 				82AAF2402179381800DFAB5C /* Sources */,
 				82AAF2412179381800DFAB5C /* Frameworks */,
@@ -82,9 +85,9 @@
 			);
 			dependencies = (
 			);
-			name = group18;
+			name = group18_assignment6;
 			productName = group18;
-			productReference = 82AAF2442179381800DFAB5C /* group18.app */;
+			productReference = 82AAF2442179381800DFAB5C /* group18_assignment6.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,11 +102,12 @@
 				TargetAttributes = {
 					82AAF2432179381800DFAB5C = {
 						CreatedOnToolsVersion = 9.4;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 82AAF23F2179381800DFAB5C /* Build configuration list for PBXProject "group18" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = 82AAF23F2179381800DFAB5C /* Build configuration list for PBXProject "group18_assignment6" */;
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -115,7 +119,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				82AAF2432179381800DFAB5C /* group18 */,
+				82AAF2432179381800DFAB5C /* group18_assignment6 */,
 			);
 		};
 /* End PBXProject section */
@@ -138,7 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82AAF24A2179381800DFAB5C /* ViewController.swift in Sources */,
+				82ACC7D62179411D0050C1FE /* AdventurerTableViewController.swift in Sources */,
+				82ACC7D82179414E0050C1FE /* Adventurer.swift in Sources */,
 				82AAF2482179381800DFAB5C /* AppDelegate.swift in Sources */,
 				82AAF2502179381800DFAB5C /* group18.xcdatamodeld in Sources */,
 			);
@@ -285,15 +290,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = group18/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				INFOPLIST_FILE = group18_assignment6/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Group-18.group18";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -302,22 +305,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = group18/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				INFOPLIST_FILE = group18_assignment6/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Group-18.group18";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		82AAF23F2179381800DFAB5C /* Build configuration list for PBXProject "group18" */ = {
+		82AAF23F2179381800DFAB5C /* Build configuration list for PBXProject "group18_assignment6" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82AAF2572179381900DFAB5C /* Debug */,
@@ -326,7 +327,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		82AAF2592179381900DFAB5C /* Build configuration list for PBXNativeTarget "group18" */ = {
+		82AAF2592179381900DFAB5C /* Build configuration list for PBXNativeTarget "group18_assignment6" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82AAF25A2179381900DFAB5C /* Debug */,
