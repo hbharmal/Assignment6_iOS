@@ -16,10 +16,9 @@ class AdventurerRecruitmentViewController: UIViewController {
     @IBOutlet weak var NameTextField: UITextField!
     @IBOutlet weak var ClassTextField: UITextField!
     
-    // Save adventurer here
-    @IBAction func AdventurerSaveAction(_ sender: Any) {
+
     
-        
+    @IBAction func AdventurerSaveAction(_ sender: Any) {
         let name: String = NameTextField.text!
         let class_name: String = ClassTextField.text!
         
@@ -27,31 +26,30 @@ class AdventurerRecruitmentViewController: UIViewController {
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
-    
+        let managedContext = appDelegate.managedObjectContext
         
-        let userEntity = NSEntityDescription.entity(forEntityName: "Adventurer_attributes", in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: "Adventurer_attributes", in: managedContext)!
         
-        let adventurer = NSManagedObject(entity: userEntity, insertInto: managedContext)
+        let adventurer = NSManagedObject(entity: entity, insertInto: managedContext)
         
         adventurer.setValue(name, forKeyPath: "name")
         adventurer.setValue(class_name, forKey: "profession")
         
         do {
             try managedContext.save()
-            adventurers.append(adventurer)
+            print("Saved")
+            
         } catch let error as NSError {
             print("Could not save, try again: ", error)
         }
         
+        adventurers.append(adventurer)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
