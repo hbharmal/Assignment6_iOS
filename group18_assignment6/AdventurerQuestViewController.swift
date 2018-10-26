@@ -7,19 +7,48 @@
 //
 
 import UIKit
+import CoreData
+
+var quest_adventurers: [NSManagedObject] = []
 
 class AdventurerQuestViewController: UIViewController {
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let managedContext =
+            appDelegate.managedObjectContext
+        
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "Adventurer_attributes")
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        do {
+            try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        if let results = fetchedResults {
+            quest_adventurers = results
+        }
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
     /*

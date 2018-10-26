@@ -25,6 +25,15 @@ class AdventurerTableViewController: UITableViewController {
         self.tableView.register(AdventurerTableViewCell.self, forCellReuseIdentifier: "AdventurerTableViewCell")
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationViewController = segue.destination as? AdventurerQuestViewController {
+            if let cell = sender as? UITableViewCell,
+                let indexPath = self.tableView.indexPath(for: cell) {
+                destinationViewController.data = indexPath.row
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -78,8 +87,10 @@ class AdventurerTableViewController: UITableViewController {
         let level = adventurer.value(forKey: "level") as? String
         let current_hitpoints = adventurer.value(forKey: "current_hitpoints") as! CVarArg
         let total_hitpoints = adventurer.value(forKey: "total_hitpoints") as! CVarArg
-        let numerator: String = String(format: "%@", current_hitpoints)
-        let denominator: String = String(format: "%@", total_hitpoints)
+        let attack_pre = adventurer.value(forKey: "attack_multiplier") as! CVarArg
+        let numerator: String = String(String(format: "%@", current_hitpoints).prefix(5))
+        let denominator: String = String(String(format: "%@", total_hitpoints).prefix(5))
+        let attack: String = String(String(format: "%@", attack_pre).prefix(4))
 
         let HP = numerator + "/" + denominator
 
@@ -89,27 +100,22 @@ class AdventurerTableViewController: UITableViewController {
         cell.AdventurerImageView.image = UIImage(named: "anime-character-1")
         cell.AdventurerNameLabel.text = "Name: \(name)"
         cell.AdventurerHPLabel.text = "HP: \(HP)"
-        cell.AdventurerAttackLabel.text = "Attack: \(adventurer.value(forKey: "attack_multiplier") as? String)"
+        cell.AdventurerAttackLabel.text = "Attack: \(attack)"
         cell.AdventurerTypeLabel.text = adventurer.value(forKey: "profession") as? String
         cell.AdventurerLevelLabel.text = level
-        
-        //       cell.textLabel?.text = "Name: \(name) \n Class: \(profession) \n Level: \(level) \n Attack: \(adventurer.value(forKey: "attack_multiplier") as? String) \n  HP: \(HP)"
         
         print("should have rendered")
         return cell
     }
 //
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0{
+        if indexPath.row == 0 {
             return 180
-        }else{
+        } else {
             return 181
         }
-        }
-//        let currentImage = images[0]
-//        let imageCrop = currentImage.getCropRatio()
-//        return tableView.frame.width / imageCrop
-//    }
+    }
+
 
     /*
     // Override to support conditional editing of the table view.
