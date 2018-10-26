@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="C5b-ry-tYp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="C5b-ry-tYp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Adventurer Recruitment View Controller-->
         <scene sceneID="V8h-PV-EsK">
             <objects>
-                <viewController id="Bet-vx-X4u" sceneMemberID="viewController">
+                <viewController id="Bet-vx-X4u" customClass="AdventurerRecruitmentViewController" customModule="group18_assignment6" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XUh-dh-jhY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,6 +84,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="AdventurerSaveAction:" destination="Bet-vx-X4u" eventType="touchUpInside" id="Ns3-BI-99t"/>
                                     <segue destination="BYZ-38-t0r" kind="show" id="OxE-dz-Kuz"/>
                                 </connections>
                             </button>
@@ -102,6 +103,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="1kM-do-OLV"/>
                     </view>
+                    <connections>
+                        <outlet property="ClassTextField" destination="ws2-QE-ZeR" id="gSz-h1-KP6"/>
+                        <outlet property="NameTextField" destination="6ln-Xi-2Xo" id="b7O-q5-CnO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uvx-Qm-9g1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -116,10 +121,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AdventurerCell" rowHeight="180" id="ELg-Eg-suT">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AdventurerCell" rowHeight="180" id="ELg-Eg-suT" customClass="AdventurerTableViewCell" customModule="group18_assignment6" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="180"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ELg-Eg-suT" id="gXH-OH-Yd1" customClass="Adventurer">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ELg-Eg-suT" id="gXH-OH-Yd1" customClass="AdventurerTableViewCell" customModule="group18_assignment6" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="179.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -158,6 +163,11 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="AdventurerAttackLabel" destination="eaI-ge-QBc" id="Tof-ZJ-EKR"/>
+                                    <outlet property="AdventurerHPLabel" destination="fZG-ph-AAV" id="exp-hO-Lug"/>
+                                    <outlet property="AdventurerImageView" destination="T8b-WH-P2f" id="HY6-WH-aGr"/>
+                                    <outlet property="AdventurerNameLabel" destination="nzF-gV-MyV" id="aJD-Pi-QQM"/>
+                                    <outlet property="AdventurerTypeLabel" destination="RVE-fj-1wd" id="PlT-Ro-RhJ"/>
                                     <segue destination="HQ2-Sy-Ead" kind="push" id="Zwj-aJ-6HI"/>
                                 </connections>
                             </tableViewCell>
@@ -177,10 +187,10 @@
             </objects>
             <point key="canvasLocation" x="1056.8" y="118.29085457271366"/>
         </scene>
-        <!--View Controller-->
+        <!--Adventurer Quest View Controller-->
         <scene sceneID="V9x-NI-Gha">
             <objects>
-                <viewController id="HQ2-Sy-Ead" sceneMemberID="viewController">
+                <viewController id="HQ2-Sy-Ead" customClass="AdventurerQuestViewController" customModule="group18_assignment6" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aVK-I5-wKb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -293,6 +303,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="OxE-dz-Kuz"/>
+        <segue reference="Qfs-YG-PjN"/>
     </inferredMetricsTieBreakers>
 </document>

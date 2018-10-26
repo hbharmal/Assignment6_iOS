@@ -9,7 +9,6 @@
 import UIKit
 
 class AdventurerTableViewController: UITableViewController {
-
     
     var adventurers = [Adventurer(name: "Cloud", level: 5, type: "SOLDIER", attack: 3.40, hp: 105)]
     override func viewDidLoad() {
