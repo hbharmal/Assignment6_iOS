@@ -28,12 +28,13 @@ class AdventurerRecruitmentViewController: UIViewController {
         
         let adventurer = NSManagedObject(entity: entity!, insertInto: managedContext)
         
-        let hitpoints: Float = Float(drand48() * 100)
+        let hitpoints: Int32 = Int32(arc4random_uniform(120))
+        var level: Int32 = 1
         let attack_multiplier: Float = Float(drand48() * 5)
         
         adventurer.setValue(name, forKeyPath: "name")
         adventurer.setValue(profession, forKey: "profession")
-        adventurer.setValue(1, forKey: "level")
+        adventurer.setValue(Int32(1), forKey: "level")
         adventurer.setValue(hitpoints, forKey: "total_hitpoints")
         adventurer.setValue(hitpoints, forKey: "current_hitpoints")
         adventurer.setValue(attack_multiplier, forKey: "attack_multiplier")

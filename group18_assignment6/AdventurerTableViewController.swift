@@ -29,7 +29,7 @@ class AdventurerTableViewController: UITableViewController {
         if let destinationViewController = segue.destination as? AdventurerQuestViewController {
             if let cell = sender as? UITableViewCell,
                 let indexPath = self.tableView.indexPath(for: cell) {
-                destinationViewController.data = indexPath.row
+                destinationViewController.index_row = indexPath.row
             }
         }
     }
@@ -85,6 +85,7 @@ class AdventurerTableViewController: UITableViewController {
         let name = adventurer.value(forKeyPath: "name") as! String
         let profession = adventurer.value(forKey: "profession") as? String
         let level = adventurer.value(forKey: "level") as? String
+        print(level)
         let current_hitpoints = adventurer.value(forKey: "current_hitpoints") as! CVarArg
         let total_hitpoints = adventurer.value(forKey: "total_hitpoints") as! CVarArg
         let attack_pre = adventurer.value(forKey: "attack_multiplier") as! CVarArg
