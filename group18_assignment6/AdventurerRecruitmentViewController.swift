@@ -17,31 +17,39 @@ class AdventurerRecruitmentViewController: UIViewController {
     @IBOutlet weak var ClassTextField: UITextField!
     
     // Save adventurer here
+
+    
     @IBAction func AdventurerSaveAction(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let name: String = NameTextField.text!
         let class_name: String = ClassTextField.text!
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//            return
+//        }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = appDelegate.managedObjectContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "Adventurer_entities", in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: "Adventurer_attributes", in: managedContext)
         
-        let adventurer = NSManagedObject(entity: entity, insertInto: managedContext)
+        let adventurer = NSManagedObject(entity: entity!, insertInto: managedContext)
         
         adventurer.setValue(name, forKeyPath: "name")
         adventurer.setValue(class_name, forKey: "profession")
         
         do {
             try managedContext.save()
-            adventurers.append(adventurer)
+            print("Saved")
+            let fetchrequest = NSFetchRequest<NSManagedObject>(entityName: "Adventurer_attributes")
+            var adventurers = try managedContext.fetch(fetchrequest)
+            print(adventurers)
+            
         } catch let error as NSError {
             print("Could not save, try again")
         }
         
+        adventurers.append(adventurer)
     }
     
     override func viewDidLoad() {
