@@ -172,7 +172,7 @@
                                             <rect key="frame" x="16" y="17" width="133" height="144"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CLOUD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzF-gV-MyV">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="adname" text="CLOUD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzF-gV-MyV">
                                             <rect key="frame" x="157" y="34" width="176" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -343,7 +343,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="a9I-zC-qcG"/>
-        <segue reference="Qfs-YG-PjN"/>
+        <segue reference="Zwj-aJ-6HI"/>
+        <segue reference="qMC-V1-iYu"/>
     </inferredMetricsTieBreakers>
 </document>

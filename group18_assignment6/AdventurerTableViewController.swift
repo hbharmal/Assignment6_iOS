@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class AdventurerTableViewController: UITableViewController {
     
-    var adventurers = [Adventurer(name: "Cloud", level: 5, type: "SOLDIER", attack: 3.40, hp: 105)]
+    //var adventurers = [Adventurer(name: "Cloud", level: 5, type: "SOLDIER", attack: 3.40, hp: 105)]
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +21,30 @@ class AdventurerTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //1
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        //2
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "Adventurer_attributes")
+        
+        //3
+        do {
+            adventurers = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -40,12 +65,20 @@ class AdventurerTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        
         // Configure the cell...
-        var adventurer: Adventurer = adventurers[0]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AdventurerCell", for: indexPath)
-        cell.textLabel?.text = "Name: \(adventurer.name) \n \(adventurer.level) \n \(adventurer.type) \n Attack: \(adventurer.attack) \n HP: \(adventurer.hp)"
+        //var adventurer: Adventurer = adventurers[0]
+        let adven = adventurers[indexPath.row]
+        
+       let cell = tableView.dequeueReusableCell(withIdentifier: "AdventurerCell", for: indexPath) as! AdventurerTableViewCell
+        
+        //cell.AdventurerImageView.image = adven.value(forKey: "portrait") as? UIImage
+        cell.textLabel?.text = adven.value(forKey: "name") as? String
+//        cell.AdventurerTypeLabel.text = adven.value(forKey: "profession") as? String
+//        cell.AdventurerAttackLabel.text =  adven.value(forKey: "attack_multiplier") as? String
+//        cell.AdventurerHPLabel.text =  adven.value(forKey: "total_hitpoints") as? String
+
+        //        cell.textLabel?.text = "Name: \(adventurer.name) \n \(adventurer.level) \n \(adventurer.type) \n Attack: \(adventurer.attack) \n HP: \(adventurer.hp)"
 
         return cell
     }

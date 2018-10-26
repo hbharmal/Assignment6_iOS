@@ -9,14 +9,12 @@
 import UIKit
 import CoreData
 
+var adventurers: [NSManagedObject] = []
+
 class AdventurerRecruitmentViewController: UIViewController {
-    
-    var adventurers: [NSManagedObject] = []
     
     @IBOutlet weak var NameTextField: UITextField!
     @IBOutlet weak var ClassTextField: UITextField!
-    
-
     
     @IBAction func AdventurerSaveAction(_ sender: Any) {
         let name: String = NameTextField.text!
@@ -34,6 +32,8 @@ class AdventurerRecruitmentViewController: UIViewController {
         
         adventurer.setValue(name, forKeyPath: "name")
         adventurer.setValue(class_name, forKey: "profession")
+        adventurer.setValue(arc4random_uniform(100), forKey: "total_hitpoints")
+        adventurer.setValue(arc4random_uniform(10), forKey: "attack_multiplier")
         
         do {
             try managedContext.save()
@@ -48,7 +48,6 @@ class AdventurerRecruitmentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
     }
 

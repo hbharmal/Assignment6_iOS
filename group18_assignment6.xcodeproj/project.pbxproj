@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		82AAF2482179381800DFAB5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AAF2472179381800DFAB5C /* AppDelegate.swift */; };
-		82AAF24D2179381800DFAB5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AAF24B2179381800DFAB5C /* Main.storyboard */; };
+		82AAF24D2179381800DFAB5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AAF24B2179381800DFAB5C /* Main.storyboard */; settings = {ASSET_TAGS = (AdventurerNameLabel, ); }; };
 		82AAF2502179381800DFAB5C /* coreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82AAF24E2179381800DFAB5C /* coreData.xcdatamodeld */; };
 		82AAF2522179381900DFAB5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82AAF2512179381900DFAB5C /* Assets.xcassets */; };
 		82AAF2552179381900DFAB5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AAF2532179381900DFAB5C /* LaunchScreen.storyboard */; };
@@ -105,6 +105,9 @@
 		82AAF23C2179381800DFAB5C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					AdventurerNameLabel,
+				);
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Vadrevu, Anirudh S";
