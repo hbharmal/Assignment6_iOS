@@ -18,6 +18,7 @@ class AdventurerRecruitmentViewController: UIViewController {
     
     // Save adventurer here
     @IBAction func AdventurerSaveAction(_ sender: Any) {
+    
         
         let name: String = NameTextField.text!
         let class_name: String = ClassTextField.text!
@@ -27,10 +28,11 @@ class AdventurerRecruitmentViewController: UIViewController {
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
+    
         
-        let entity = NSEntityDescription.entity(forEntityName: "Adventurer_entities", in: managedContext)!
+        let userEntity = NSEntityDescription.entity(forEntityName: "Adventurer_attributes", in: managedContext)!
         
-        let adventurer = NSManagedObject(entity: entity, insertInto: managedContext)
+        let adventurer = NSManagedObject(entity: userEntity, insertInto: managedContext)
         
         adventurer.setValue(name, forKeyPath: "name")
         adventurer.setValue(class_name, forKey: "profession")
@@ -39,13 +41,15 @@ class AdventurerRecruitmentViewController: UIViewController {
             try managedContext.save()
             adventurers.append(adventurer)
         } catch let error as NSError {
-            print("Could not save, try again")
+            print("Could not save, try again: ", error)
         }
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         // Do any additional setup after loading the view.
     }
