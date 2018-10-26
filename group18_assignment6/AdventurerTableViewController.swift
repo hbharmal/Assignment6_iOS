@@ -9,39 +9,41 @@
 import UIKit
 import CoreData
 
+var adventurers: [NSManagedObject] = []
+
 class AdventurerTableViewController: UITableViewController {
     
-    //var adventurers = [Adventurer(name: "Cloud", level: 5, type: "SOLDIER", attack: 3.40, hp: 105)]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //1
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        
+
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
         let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        //2
+            appDelegate.managedObjectContext
+
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "Adventurer_attributes")
-        
-        //3
+        var fetchedResults:[NSManagedObject]? = nil
+
         do {
-            adventurers = try managedContext.fetch(fetchRequest)
+            try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        if let results = fetchedResults {
+            adventurers = results
         }
     }
     
@@ -65,21 +67,26 @@ class AdventurerTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // Configure the cell...
-        //var adventurer: Adventurer = adventurers[0]
-        let adven = adventurers[indexPath.row]
-        
-       let cell = tableView.dequeueReusableCell(withIdentifier: "AdventurerCell", for: indexPath) as! AdventurerTableViewCell
-        
-        //cell.AdventurerImageView.image = adven.value(forKey: "portrait") as? UIImage
-        cell.textLabel?.text = adven.value(forKey: "name") as? String
-//        cell.AdventurerTypeLabel.text = adven.value(forKey: "profession") as? String
-//        cell.AdventurerAttackLabel.text =  adven.value(forKey: "attack_multiplier") as? String
-//        cell.AdventurerHPLabel.text =  adven.value(forKey: "total_hitpoints") as? String
 
-        //        cell.textLabel?.text = "Name: \(adventurer.name) \n \(adventurer.level) \n \(adventurer.type) \n Attack: \(adventurer.attack) \n HP: \(adventurer.hp)"
+        let cellIdentifier = "Cell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! AdventurerTableViewCell
 
+        let adventurer = adventurers[indexPath.row]
+        let name = adventurer.value(forKeyPath: "name") as! String
+        let current_hitpoints = adventurer.value(forKey: "current_hitpoints") as! CVarArg
+        let total_hitpoints = adventurer.value(forKey: "total_hitpoints") as! CVarArg
+        let numerator: String = String(format: "%@", current_hitpoints)
+        let denominator: String = String(format: "%@", total_hitpoints)
+
+        let HP = numerator + "/" + denominator
+
+        //let imageFile = adventurer.value(forKey: "image")
+        cell.AdventurerNameLabel.text = name
+        cell.AdventurerHPLabel.text = HP
+        //cell.AdventurerImageView.image = UIImage(data: imageFile as! Data)
+        cell.AdventurerAttackLabel.text = adventurer.value(forKey: "attack_multiplier") as? String
+        cell.AdventurerTypeLabel.text = adventurer.value(forKey: "profession") as? String
+        print("should have rendered")
         return cell
     }
     

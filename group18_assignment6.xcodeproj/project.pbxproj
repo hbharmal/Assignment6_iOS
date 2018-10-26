@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		82AAF2482179381800DFAB5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AAF2472179381800DFAB5C /* AppDelegate.swift */; };
 		82AAF24D2179381800DFAB5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AAF24B2179381800DFAB5C /* Main.storyboard */; settings = {ASSET_TAGS = (AdventurerNameLabel, ); }; };
-		82AAF2502179381800DFAB5C /* coreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82AAF24E2179381800DFAB5C /* coreData.xcdatamodeld */; };
+		82AAF2502179381800DFAB5C /* group18.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82AAF24E2179381800DFAB5C /* group18.xcdatamodeld */; };
 		82AAF2522179381900DFAB5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82AAF2512179381900DFAB5C /* Assets.xcassets */; };
 		82AAF2552179381900DFAB5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AAF2532179381900DFAB5C /* LaunchScreen.storyboard */; };
 		82ACC7D62179411D0050C1FE /* AdventurerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ACC7D52179411D0050C1FE /* AdventurerTableViewController.swift */; };
@@ -71,7 +71,7 @@
 				82AAF2512179381900DFAB5C /* Assets.xcassets */,
 				82AAF2532179381900DFAB5C /* LaunchScreen.storyboard */,
 				82AAF2562179381900DFAB5C /* Info.plist */,
-				82AAF24E2179381800DFAB5C /* coreData.xcdatamodeld */,
+				82AAF24E2179381800DFAB5C /* group18.xcdatamodeld */,
 				82ACC7D52179411D0050C1FE /* AdventurerTableViewController.swift */,
 				C06FCC1F218290BD008586B3 /* AdventurerRecruitmentViewController.swift */,
 				82ACC7D72179414E0050C1FE /* Adventurer.swift */,
@@ -160,7 +160,7 @@
 				C06FCC2221829338008586B3 /* AdventurerQuestViewController.swift in Sources */,
 				C06FCC20218290BD008586B3 /* AdventurerRecruitmentViewController.swift in Sources */,
 				82AAF2482179381800DFAB5C /* AppDelegate.swift in Sources */,
-				82AAF2502179381800DFAB5C /* coreData.xcdatamodeld in Sources */,
+				82AAF2502179381800DFAB5C /* group18.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,13 +353,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		82AAF24E2179381800DFAB5C /* coreData.xcdatamodeld */ = {
+		82AAF24E2179381800DFAB5C /* group18.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				82AAF24F2179381800DFAB5C /* coreData.xcdatamodel */,
 			);
 			currentVersion = 82AAF24F2179381800DFAB5C /* coreData.xcdatamodel */;
-			path = coreData.xcdatamodeld;
+			path = group18.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -8,42 +8,43 @@
 
 import UIKit
 import CoreData
-
-var adventurers: [NSManagedObject] = []
+import Foundation
 
 class AdventurerRecruitmentViewController: UIViewController {
     
     @IBOutlet weak var NameTextField: UITextField!
     @IBOutlet weak var ClassTextField: UITextField!
+    var portrait: UIImage? = nil
     
     @IBAction func AdventurerSaveAction(_ sender: Any) {
         let name: String = NameTextField.text!
-        let class_name: String = ClassTextField.text!
+        let profession: String = ClassTextField.text!
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "Adventurer_attributes", in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: "Adventurer_attributes", in: managedContext)
         
-        let adventurer = NSManagedObject(entity: entity, insertInto: managedContext)
+        let adventurer = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+        let hitpoints: Float = Float(drand48() * 100)
+        let attack_multiplier: Float = Float(drand48() * 5)
         
         adventurer.setValue(name, forKeyPath: "name")
-        adventurer.setValue(class_name, forKey: "profession")
-        adventurer.setValue(arc4random_uniform(100), forKey: "total_hitpoints")
-        adventurer.setValue(arc4random_uniform(10), forKey: "attack_multiplier")
+        adventurer.setValue(profession, forKey: "profession")
+        adventurer.setValue(1, forKey: "level")
+        adventurer.setValue(hitpoints, forKey: "total_hitpoints")
+        adventurer.setValue(hitpoints, forKey: "current_hitpoints")
+        adventurer.setValue(attack_multiplier, forKey: "attack_multiplier")
         
         do {
             try managedContext.save()
             print("Saved")
             
         } catch let error as NSError {
-            print("Could not save, try again: ", error)
+            print("Could not fetch. \(error), \(error.userInfo)")
         }
-        
-        adventurers.append(adventurer)
     }
     
     override func viewDidLoad() {
