@@ -22,6 +22,7 @@ class AdventurerTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.tableView.register(AdventurerTableViewCell.self, forCellReuseIdentifier: "AdventurerTableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,12 +68,14 @@ class AdventurerTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! AdventurerTableViewCell
 
         let adventurer = adventurers[indexPath.row]
         let name = adventurer.value(forKeyPath: "name") as! String
+        let profession = adventurer.value(forKey: "profession") as? String
+        let level = adventurer.value(forKey: "level") as? String
         let current_hitpoints = adventurer.value(forKey: "current_hitpoints") as! CVarArg
         let total_hitpoints = adventurer.value(forKey: "total_hitpoints") as! CVarArg
         let numerator: String = String(format: "%@", current_hitpoints)
@@ -81,15 +84,32 @@ class AdventurerTableViewController: UITableViewController {
         let HP = numerator + "/" + denominator
 
         //let imageFile = adventurer.value(forKey: "image")
-        cell.AdventurerNameLabel.text = name
-        cell.AdventurerHPLabel.text = HP
-        //cell.AdventurerImageView.image = UIImage(data: imageFile as! Data)
-        cell.AdventurerAttackLabel.text = adventurer.value(forKey: "attack_multiplier") as? String
+        cell.AdventurerNameLabel.numberOfLines = 0
+
+        cell.AdventurerImageView.image = UIImage(named: "anime-character-1")
+        cell.AdventurerNameLabel.text = "Name: \(name)"
+        cell.AdventurerHPLabel.text = "HP: \(HP)"
+        cell.AdventurerAttackLabel.text = "Attack: \(adventurer.value(forKey: "attack_multiplier") as? String)"
         cell.AdventurerTypeLabel.text = adventurer.value(forKey: "profession") as? String
+        cell.AdventurerLevelLabel.text = level
+        
+        //       cell.textLabel?.text = "Name: \(name) \n Class: \(profession) \n Level: \(level) \n Attack: \(adventurer.value(forKey: "attack_multiplier") as? String) \n  HP: \(HP)"
+        
         print("should have rendered")
         return cell
     }
-    
+//
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0{
+            return 180
+        }else{
+            return 181
+        }
+        }
+//        let currentImage = images[0]
+//        let imageCrop = currentImage.getCropRatio()
+//        return tableView.frame.width / imageCrop
+//    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -136,4 +156,10 @@ class AdventurerTableViewController: UITableViewController {
     }
     */
 
+}
+extension UIImage {
+    func getCropRatio() -> CGFloat {
+        let widthRatio = CGFloat(self.size.width / self.size.height)
+        return widthRatio
+    }
 }

@@ -15,7 +15,7 @@ class AdventurerTableViewCell: UITableViewCell {
     @IBOutlet weak var AdventurerTypeLabel: UILabel!
     @IBOutlet weak var AdventurerAttackLabel: UILabel!
     @IBOutlet weak var AdventurerHPLabel: UILabel!
-    
+    @IBOutlet weak var AdventurerLevelLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,5 +27,7 @@ class AdventurerTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }
