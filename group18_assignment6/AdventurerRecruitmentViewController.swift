@@ -15,6 +15,8 @@ var images = [
 ]
 
 class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    var picture_index: Int = 0
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -28,10 +30,11 @@ class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("sdfsdf")
+        print(indexPath)
         let cell = collectionView.cellForItem(at: indexPath) as! ImagesCollectionViewCell
         cell.layer.borderWidth = 2.0
         cell.layer.borderColor = UIColor.gray.cgColor
+        picture_index = indexPath.row
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -41,19 +44,21 @@ class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDel
         cell.layer.borderColor = nil 
     }
     
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true 
-    }
     
     
-    
+
     @IBOutlet weak var NameTextField: UITextField!
     @IBOutlet weak var ClassTextField: UITextField!
     var portrait: UIImage? = nil
     
     @IBAction func AdventurerSaveAction(_ sender: Any) {
+        if NameTextField.text! == "" || ClassTextField.text! == "" {
+            print("Can't have blank name or profession")
+        }else{
+        
         
         let name: String = NameTextField.text!
+        
         let profession: String = ClassTextField.text!
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -74,6 +79,7 @@ class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDel
         adventurer.setValue(hitpoints, forKey: "total_hitpoints")
         adventurer.setValue(hitpoints, forKey: "current_hitpoints")
         adventurer.setValue(attack_multiplier, forKey: "attack_multiplier")
+        adventurer.setValue(images[picture_index], forKey: "portrait")
         
         do {
             try managedContext.save()
@@ -83,12 +89,13 @@ class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDel
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
+
     
-    override func viewDidLoad() {
+        func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    override func didReceiveMemoryWarning() {
+        func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
 //        self.ImagesCollection.delegate = self
@@ -107,4 +114,5 @@ class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDel
     */
     
 
+}
 }

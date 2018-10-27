@@ -14,6 +14,11 @@ import CoreData
 class AdventurerQuestViewController: UIViewController {
     
     var index_row: Int = 0
+    var enemies_killed:Int = 0
+    var turns_taken:Int = 0
+    var monster_damage_taken:Int = 0
+    var current_hp: Int = 0
+    var total_hp: Int = 0
 
     @IBOutlet weak var CharacterNameUILabel: UILabel!
     @IBOutlet weak var ClassNameUILabel: UILabel!
@@ -38,7 +43,7 @@ class AdventurerQuestViewController: UIViewController {
         // Do any additional setup after loading the view.
         let adventurer = adventurers[index_row]
         let name = adventurer.value(forKeyPath: "name") as! String
-        let profession = adventurer.value(forKey: "profession") as? String
+        let profession = adventurer.value(forKey: "profession") as! String
         let level = adventurer.value(forKey: "level") as? String
         print(level)
         let current_hitpoints = adventurer.value(forKey: "current_hitpoints") as! CVarArg
@@ -47,49 +52,100 @@ class AdventurerQuestViewController: UIViewController {
         let numerator: String = String(String(format: "%@", current_hitpoints).prefix(5))
         let denominator: String = String(String(format: "%@", total_hitpoints).prefix(5))
         let attack: String = String(String(format: "%@", attack_pre).prefix(4))
-        let HP = numerator + "/" + denominator
+        // let HP = numerator + "/" + denominator
+        
+        current_hp = Int(numerator)!
+        total_hp = Int(denominator)!
         
         ClassNameUILabel.text = "Class: \(profession)"
         CharacterNameUILabel.text = "Name: \(name)"
         AttackPowerUILabel.text = attack
-        HpUILabel.text = HP
+        
         LevelUILabel.text = level
         
+        enemytimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(enemy), userInfo: nil, repeats: true)
         playertimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(player), userInfo: nil, repeats: true)
-        enemytimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(enemy), userInfo: nil, repeats: true)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         QuestLogTextView.text = quest_text
+        HpUILabel.text = "\(current_hp) / \(total_hp)"
     }
     
+    
+    
     @objc func player() {
-        quest_text += "fuck yeah \n"
+        let adventurer = adventurers[index_row]
+        let name = adventurer.value(forKeyPath: "name") as! String
+        let attack_pre = adventurer.value(forKey: "attack_multiplier") as! Int
+        var attack_points  = Int(arc4random_uniform(10))
+        attack_points = attack_points * attack_pre
+        monster_damage_taken = monster_damage_taken + attack_points
+    
+        quest_text += name + " attacks for " + String(attack_points) + " damage \n"
         QuestLogTextView.text = quest_text
+        turns_taken += 1
     }
     
     @objc func enemy() {
-        quest_text += "oh no \n"
+        var enemy_actions_list = ["The monster is waiting...", "The monster attacks for 5 damage.", "Enemy is defeated!", "A new enemy appears!"]
+        if turns_taken == 0{
+            quest_text += enemy_actions_list[3]
+            quest_text += "\n"
+            
+        }else if monster_damage_taken <= 100{
+            let random_attack = arc4random_uniform(2)
+            if random_attack == 1{
+                if current_hp <= 5 {
+                    current_hp = 0
+                    quest_text += "You died!"
+                    playertimer.invalidate()
+                    enemytimer.invalidate()
+                }else {
+                    current_hp -= 5
+                    quest_text += enemy_actions_list[1]
+                    quest_text += "\n"
+                }
+                
+            } else{
+                quest_text += enemy_actions_list[0]
+                quest_text += "\n"
+            }
+        }else if monster_damage_taken > 100{
+            quest_text += enemy_actions_list[2]
+            enemies_killed += 1
+            quest_text += "\n"
+            monster_damage_taken = 0
+            quest_text += enemy_actions_list[3]
+            quest_text += "\n"
+        }
+        
         QuestLogTextView.text = quest_text
+        viewWillAppear(true)
+        turns_taken += 1
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-    
-
+ 
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     
+     // MARK: - Navigation
+     
+     
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     
+     // Get the new view controller using segue.destinationViewController.
+     
+     // Pass the selected object to the new view controller.
+     
+     }
+     
+     */
+ 
 }
