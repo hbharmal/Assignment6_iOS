@@ -11,7 +11,7 @@ import CoreData
 import Foundation
 
 var images = [
-    "anime-character-1", "anime-character-2", "anime-character-3"
+    "anime-character-1", "anime-character-2", "anime-character-3", "anime-character-4"
 ]
 
 class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -38,7 +38,6 @@ class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print("sdfsdf")
         let cell = collectionView.cellForItem(at: indexPath) as! ImagesCollectionViewCell
         cell.layer.borderWidth = 0
         cell.layer.borderColor = nil 
@@ -70,12 +69,12 @@ class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDel
         let adventurer = NSManagedObject(entity: entity!, insertInto: managedContext)
         
         let hitpoints: Int32 = Int32(arc4random_uniform(120))
-        var level: Int32 = 1
+        let level: Int32 = 1
         let attack_multiplier: Float = Float(drand48() * 5)
         
         adventurer.setValue(name, forKeyPath: "name")
         adventurer.setValue(profession, forKey: "profession")
-        adventurer.setValue(Int32(1), forKey: "level")
+        adventurer.setValue(level, forKey: "level")
         adventurer.setValue(hitpoints, forKey: "total_hitpoints")
         adventurer.setValue(hitpoints, forKey: "current_hitpoints")
         adventurer.setValue(attack_multiplier, forKey: "attack_multiplier")

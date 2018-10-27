@@ -85,16 +85,18 @@ class AdventurerTableViewController: UITableViewController {
 
         let adventurer = adventurers[indexPath.row]
         let name = adventurer.value(forKeyPath: "name") as! String
-        let profession = adventurer.value(forKey: "profession") as? String
-        let level = adventurer.value(forKey: "level") as? String
+//        let profession = adventurer.value(forKey: "profession") as? String
+        let level = adventurer.value(forKey: "level") as! CVarArg
         let current_hitpoints = adventurer.value(forKey: "current_hitpoints") as! CVarArg
         let total_hitpoints = adventurer.value(forKey: "total_hitpoints") as! CVarArg
         let attack_pre = adventurer.value(forKey: "attack_multiplier") as! CVarArg
         let numerator: String = String(String(format: "%@", current_hitpoints).prefix(5))
         let denominator: String = String(String(format: "%@", total_hitpoints).prefix(5))
         let attack: String = String(String(format: "%@", attack_pre).prefix(4))
+        print(attack)
         let picture_name = adventurer.value(forKey: "portrait") as? String
         let HP = numerator + "/" + denominator
+        let level_string: String = String(format: "%@", level)
 
         //let imageFile = adventurer.value(forKey: "image")
         cell.AdventurerNameLabel.numberOfLines = 0
@@ -102,11 +104,9 @@ class AdventurerTableViewController: UITableViewController {
         cell.AdventurerImageView.image = UIImage(named: picture_name!)
         cell.AdventurerNameLabel.text = "Name: \(name)"
         cell.AdventurerHPLabel.text = "HP: \(HP)"
-        cell.AdventurerAttackLabel.text = "Attack: \(attack)"
+        cell.AdventurerAttackLabel.text = "Attack:  \(attack)"
         cell.AdventurerTypeLabel.text = adventurer.value(forKey: "profession") as? String
-        //cell.AdventurerLevelLabel.text = level
-        
-        print("should have rendered")
+        cell.AdventurerLevelLabel.text = "Level:  \(level_string)"
         return cell
     }
 //
