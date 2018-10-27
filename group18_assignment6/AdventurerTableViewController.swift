@@ -12,6 +12,7 @@ import CoreData
 var adventurers: [NSManagedObject] = []
 
 class AdventurerTableViewController: UITableViewController {
+    var count: Int = 0
     
     var picuture_index: Int = 0
     
@@ -50,6 +51,7 @@ class AdventurerTableViewController: UITableViewController {
 
         do {
             try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
+            count = adventurers.count
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -57,6 +59,7 @@ class AdventurerTableViewController: UITableViewController {
         if let results = fetchedResults {
             adventurers = results
         }
+        count = adventurers.count
     }
     
 
@@ -74,7 +77,7 @@ class AdventurerTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return adventurers.count
+        return count
     }
 
     
@@ -116,6 +119,30 @@ class AdventurerTableViewController: UITableViewController {
         } else {
             return 181
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            let del_adv = adventurers[indexPath.row]
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext
+            managedContext.delete(del_adv)
+            
+            do {
+                try managedContext.save()
+                print("Saved")
+                
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+            count -= 1
+            tableView.reloadData()
+    }
+    }
+    
     }
 
 
@@ -164,7 +191,6 @@ class AdventurerTableViewController: UITableViewController {
     }
     */
 
-}
 extension UIImage {
     func getCropRatio() -> CGFloat {
         let widthRatio = CGFloat(self.size.width / self.size.height)

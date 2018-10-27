@@ -121,6 +121,7 @@ class AdventurerQuestViewController: UIViewController {
         }else if monster_damage_taken > 100{
             let adventurer = adventurers[index_row]
             
+            ad_level += 1
             adventurer.setValue(ad_level, forKey: "level")
             quest_text += enemy_actions_list[2]
             enemies_killed += 1
