@@ -10,13 +10,49 @@ import UIKit
 import CoreData
 import Foundation
 
-class AdventurerRecruitmentViewController: UIViewController {
+var images = [
+    "anime-character-1", "anime-character-2", "anime-character-3"
+]
+
+class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "picture_cell", for: indexPath) as! ImagesCollectionViewCell
+        cell.imageView.image = UIImage(named: images[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("sdfsdf")
+        let cell = collectionView.cellForItem(at: indexPath) as! ImagesCollectionViewCell
+        cell.layer.borderWidth = 2.0
+        cell.layer.borderColor = UIColor.gray.cgColor
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print("sdfsdf")
+        let cell = collectionView.cellForItem(at: indexPath) as! ImagesCollectionViewCell
+        cell.layer.borderWidth = 0
+        cell.layer.borderColor = nil 
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return true 
+    }
+    
+    
     
     @IBOutlet weak var NameTextField: UITextField!
     @IBOutlet weak var ClassTextField: UITextField!
     var portrait: UIImage? = nil
     
     @IBAction func AdventurerSaveAction(_ sender: Any) {
+        
         let name: String = NameTextField.text!
         let profession: String = ClassTextField.text!
         
@@ -50,12 +86,13 @@ class AdventurerRecruitmentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+//        self.ImagesCollection.delegate = self
+//        self.ImagesCollection.dataSource = self
     }
     
 

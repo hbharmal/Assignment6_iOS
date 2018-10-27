@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		548D4F252183DF58004CFC66 /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548D4F242183DF58004CFC66 /* ImagesCollectionViewCell.swift */; };
 		82AAF2482179381800DFAB5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AAF2472179381800DFAB5C /* AppDelegate.swift */; };
 		82AAF24D2179381800DFAB5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AAF24B2179381800DFAB5C /* Main.storyboard */; settings = {ASSET_TAGS = (AdventurerNameLabel, ); }; };
 		82AAF2502179381800DFAB5C /* group18.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82AAF24E2179381800DFAB5C /* group18.xcdatamodeld */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		548D4F242183DF58004CFC66 /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		82AAF2442179381800DFAB5C /* group18_assignment6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = group18_assignment6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82AAF2472179381800DFAB5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82AAF24C2179381800DFAB5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				82AAF2562179381900DFAB5C /* Info.plist */,
 				82AAF24E2179381800DFAB5C /* group18.xcdatamodeld */,
 				82ACC7D52179411D0050C1FE /* AdventurerTableViewController.swift */,
+				548D4F242183DF58004CFC66 /* ImagesCollectionViewCell.swift */,
 				C06FCC1F218290BD008586B3 /* AdventurerRecruitmentViewController.swift */,
 				82ACC7D72179414E0050C1FE /* Adventurer.swift */,
 			);
@@ -160,6 +163,7 @@
 				C06FCC2221829338008586B3 /* AdventurerQuestViewController.swift in Sources */,
 				C06FCC20218290BD008586B3 /* AdventurerRecruitmentViewController.swift in Sources */,
 				82AAF2482179381800DFAB5C /* AppDelegate.swift in Sources */,
+				548D4F252183DF58004CFC66 /* ImagesCollectionViewCell.swift in Sources */,
 				82AAF2502179381800DFAB5C /* group18.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
