@@ -18,7 +18,6 @@ class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDel
     
     var picture_index: Int = 0
 
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
@@ -42,9 +41,6 @@ class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDel
         cell.layer.borderWidth = 0
         cell.layer.borderColor = nil 
     }
-    
-    
-    
 
     @IBOutlet weak var NameTextField: UITextField!
     @IBOutlet weak var ClassTextField: UITextField!
@@ -52,56 +48,52 @@ class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDel
     
     @IBAction func AdventurerSaveAction(_ sender: Any) {
         if NameTextField.text! == "" || ClassTextField.text! == "" {
-            print("Can't have blank name or profession")
-        }else{
-        
-        
-        let name: String = NameTextField.text!
-        
-        let profession: String = ClassTextField.text!
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "Adventurer_attributes", in: managedContext)
-        
-        let adventurer = NSManagedObject(entity: entity!, insertInto: managedContext)
-        
-        let hitpoints: Int32 = Int32(arc4random_uniform(120))
-        let level: Int32 = 1
-        let attack_multiplier: Float = Float(drand48() * 5)
-        
-        adventurer.setValue(name, forKeyPath: "name")
-        adventurer.setValue(profession, forKey: "profession")
-        adventurer.setValue(level, forKey: "level")
-        adventurer.setValue(hitpoints, forKey: "total_hitpoints")
-        adventurer.setValue(hitpoints, forKey: "current_hitpoints")
-        adventurer.setValue(attack_multiplier, forKey: "attack_multiplier")
-        adventurer.setValue(images[picture_index], forKey: "portrait")
-        
-        do {
-            try managedContext.save()
-            print("Saved")
+            let alert = UIAlertController(title: "Alert", message: "Please enter text in both fields", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let name: String = NameTextField.text!
             
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            let profession: String = ClassTextField.text!
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            let managedContext = appDelegate.managedObjectContext
+            
+            let entity = NSEntityDescription.entity(forEntityName: "Adventurer_attributes", in: managedContext)
+            
+            let adventurer = NSManagedObject(entity: entity!, insertInto: managedContext)
+            
+            let hitpoints: Int32 = Int32(arc4random_uniform(120))
+            let level: Int32 = 1
+            let attack_multiplier: Float = Float(drand48() * 5)
+            
+            adventurer.setValue(name, forKeyPath: "name")
+            adventurer.setValue(profession, forKey: "profession")
+            adventurer.setValue(level, forKey: "level")
+            adventurer.setValue(hitpoints, forKey: "total_hitpoints")
+            adventurer.setValue(hitpoints, forKey: "current_hitpoints")
+            adventurer.setValue(attack_multiplier, forKey: "attack_multiplier")
+            adventurer.setValue(images[picture_index], forKey: "portrait")
+        
+            do {
+                try managedContext.save()
+                print("Saved")
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
         }
     }
 
     
-        func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-        func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-//        self.ImagesCollection.delegate = self
-//        self.ImagesCollection.dataSource = self
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -112,6 +104,4 @@ class AdventurerRecruitmentViewController: UIViewController, UICollectionViewDel
     }
     */
     
-
-}
 }

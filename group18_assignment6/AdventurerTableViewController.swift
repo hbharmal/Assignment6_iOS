@@ -18,23 +18,7 @@ class AdventurerTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.tableView.register(AdventurerTableViewCell.self, forCellReuseIdentifier: "AdventurerTableViewCell")
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationViewController = segue.destination as? AdventurerQuestViewController {
-            if let cell = sender as? UITableViewCell,
-                let indexPath = self.tableView.indexPath(for: cell) {
-                destinationViewController.index_row = indexPath.row
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,18 +49,15 @@ class AdventurerTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return count
     }
 
@@ -88,7 +69,6 @@ class AdventurerTableViewController: UITableViewController {
 
         let adventurer = adventurers[indexPath.row]
         let name = adventurer.value(forKeyPath: "name") as! String
-//        let profession = adventurer.value(forKey: "profession") as? String
         let level = adventurer.value(forKey: "level") as! CVarArg
         let current_hitpoints = adventurer.value(forKey: "current_hitpoints") as! CVarArg
         let total_hitpoints = adventurer.value(forKey: "total_hitpoints") as! CVarArg
@@ -96,14 +76,11 @@ class AdventurerTableViewController: UITableViewController {
         let numerator: String = String(String(format: "%@", current_hitpoints).prefix(5))
         let denominator: String = String(String(format: "%@", total_hitpoints).prefix(5))
         let attack: String = String(String(format: "%@", attack_pre).prefix(4))
-        print(attack)
         let picture_name = adventurer.value(forKey: "portrait") as? String
         let HP = numerator + "/" + denominator
         let level_string: String = String(format: "%@", level)
 
-        //let imageFile = adventurer.value(forKey: "image")
         cell.AdventurerNameLabel.numberOfLines = 0
-
         cell.AdventurerImageView.image = UIImage(named: picture_name!)
         cell.AdventurerNameLabel.text = "Name: \(name)"
         cell.AdventurerHPLabel.text = "HP: \(HP)"
@@ -112,18 +89,15 @@ class AdventurerTableViewController: UITableViewController {
         cell.AdventurerLevelLabel.text = "Level:  \(level_string)"
         return cell
     }
-//
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 180
-        } else {
-            return 181
-        }
+        return 180
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let del_adv = adventurers[indexPath.row]
@@ -134,25 +108,14 @@ class AdventurerTableViewController: UITableViewController {
             do {
                 try managedContext.save()
                 print("Saved")
-                
             } catch let error as NSError {
                 print("Could not fetch. \(error), \(error.userInfo)")
             }
+            
             count -= 1
             tableView.reloadData()
+        }
     }
-    }
-    
-    }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
     /*
     // Override to support editing the table view.
@@ -181,15 +144,18 @@ class AdventurerTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let destinationViewController = segue.destination as? AdventurerQuestViewController {
+            if let cell = sender as? UITableViewCell,
+                let indexPath = self.tableView.indexPath(for: cell) {
+                destinationViewController.index_row = indexPath.row
+            }
+        }
     }
-    */
+}
+
 
 extension UIImage {
     func getCropRatio() -> CGFloat {

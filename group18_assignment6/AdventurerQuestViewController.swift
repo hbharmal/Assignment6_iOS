@@ -27,7 +27,6 @@ class AdventurerQuestViewController: UIViewController {
     @IBOutlet weak var HpUILabel: UILabel!
     @IBOutlet weak var LevelUILabel: UILabel!
     @IBOutlet weak var AdventurerImageView: UIImageView!
-    
     @IBOutlet weak var QuestLogTextView: UITextView!
     
     var playertimer = Timer()
@@ -42,7 +41,6 @@ class AdventurerQuestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         let adventurer = adventurers[index_row]
         let name = adventurer.value(forKeyPath: "name") as! String
         let profession = adventurer.value(forKey: "profession") as! String
@@ -55,8 +53,6 @@ class AdventurerQuestViewController: UIViewController {
         let attack: String = String(String(format: "%@", attack_pre).prefix(4))
         let picture_name = adventurer.value(forKey: "portrait") as? String
         let level_string: String = String(format: "%@", level)
-        // let HP = numerator + "/" + denominator
-        
         
         current_hp = Int(numerator)!
         total_hp = Int(denominator)!
@@ -77,9 +73,7 @@ class AdventurerQuestViewController: UIViewController {
         QuestLogTextView.text = quest_text
         HpUILabel.text = "\(current_hp) / \(total_hp)"
     }
-    
-    
-    
+
     @objc func player() {
         let adventurer = adventurers[index_row]
         let name = adventurer.value(forKeyPath: "name") as! String
@@ -100,7 +94,7 @@ class AdventurerQuestViewController: UIViewController {
             quest_text += enemy_actions_list[3]
             quest_text += "\n"
             
-        }else if monster_damage_taken <= 100{
+        } else if monster_damage_taken <= 100{
             let random_attack = arc4random_uniform(2)
             if random_attack == 1{
                 if current_hp <= 5 {
@@ -114,13 +108,12 @@ class AdventurerQuestViewController: UIViewController {
                     quest_text += "\n"
                 }
                 
-            } else{
+            } else {
                 quest_text += enemy_actions_list[0]
                 quest_text += "\n"
             }
-        }else if monster_damage_taken > 100{
+        } else if monster_damage_taken > 100{
             let adventurer = adventurers[index_row]
-            
             ad_level += 1
             adventurer.setValue(ad_level, forKey: "level")
             quest_text += enemy_actions_list[2]
@@ -134,26 +127,18 @@ class AdventurerQuestViewController: UIViewController {
         QuestLogTextView.text = quest_text
         viewWillAppear(true)
         turns_taken += 1
+        
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
  
     /*
-     
      // MARK: - Navigation
      
-     
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
-     // Get the new view controller using segue.destinationViewController.
-     
-     // Pass the selected object to the new view controller.
-     
+        // no implementation for now
      }
      
      */
